@@ -17,28 +17,29 @@
                     <form action="" class="form" method="post">
                         <div class="form-group">
                             <label for="nameTextField">Book Title</label>
-                            <input type="text" name="name" id="nameTextField" class="form-control"
-                                placeholder="Enter the Book Title" required>
+                            <input type="text" name="name" id="nameTextField" value="<%= book.name %>"
+                                class="form-control" placeholder="Enter the Book Title" required>
                         </div>
                         <div class="form-group">
                             <label for="authorTextField">Author</label>
-                            <input type="text" name="author" id="authorTextField" class="form-control"
-                                placeholder="Enter the Book Author" required>
+                            <input type="text" name="author" id="authorTextField" value="<%= book.author %>"
+                                class="form-control" placeholder="Enter the Book Author" required>
                         </div>
                         <div class="form-group">
                             <label for="publishedTextField">Year of Publication</label>
-                            <input type="text" name="published" id="publishedTextField" class="form-control"
-                                placeholder="Enter the year of publication" required>
+                            <input type="text" name="published" id="publishedTextField" value="<%= book.published %>"
+                                class="form-control" placeholder="Enter the year of publication" required>
                         </div>
                         <div class="form-group">
                             <label for="descriptionTextArea">Description</label>
-                            <textarea type="text" name="description" id="descriptionTextArea" class="form-control"
+                            <textarea type="text" name="description" id="descriptionTextArea"
+                                value="<%= book.description %>" class="form-control"
                                 placeholder="Enter a brief description of the book" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="priceTextField">Price</label>
-                            <input type="number" name="price" id="priceTextField" class="form-control"
-                                placeholder="Enter the book's price" required>
+                            <input type="number" name="price" id="priceTextField" value="<%= book.price %>"
+                                class="form-control" placeholder="Enter the book's price" required>
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-edit">Submit</i>

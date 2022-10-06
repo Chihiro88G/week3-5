@@ -3,10 +3,10 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 // connect to bookModel
-let book = require('../models/books');
+let Book = require('../models/books');
 // get router for the book list page - READ OPERATION
 router.get('/', (req, res, next) => {
-    book.find((err, bookList) => {
+    Book.find((err, bookList) => {
         if (err) {
             return console.error(err);
         } else {
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 // 20221005
 // GET route for displaying the Add page - CREATE operation
 router.get('/add', (req, res, next) => {
-    res.render('book/add', { title: 'Add book' })
+    res.render('book/add', { title: 'Add a book' })
 });
 
 // POST route for processing the Add page - CREATE operation
@@ -37,7 +37,7 @@ router.post('/add', (req, res, next) => {
             console.log(err);
             res.end(err);
         } else {
-            res.redirect('bookList');
+            res.redirect('/bookList');
         }
     })
 })
@@ -59,14 +59,14 @@ router.get('/edit/:id', (req, res, next) => {
 router.post('/edit/:id', (req, res, next) => {
     let id = req.params.id;
     let updatedBook = Book({
-        "id": id,
+        "_id": id,
         "name": req.body.name,
         "author": req.body.author,
         "published": req.body.published,
         "description": req.body.description,
         "price": req.body.price
     })
-    Book.updateOne({ id: id }, updateBook, (err) => {
+    Book.updateOne({ _id: id }, updatedBook, (err) => {
         if (err) {
             console.log(err);
             res.end(err);
@@ -79,7 +79,7 @@ router.post('/edit/:id', (req, res, next) => {
 // GET to perform Deletion - DELETE operation
 router.get('/delete/:id', (req, res, next) => {
     let id = req.params.id;
-    Book.remove({ id: id }, (err) => {
+    Book.remove({ _id: id }, (err) => {
         if (err) {
             console.log(err);
             res.end(err);
