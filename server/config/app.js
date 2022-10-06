@@ -5,16 +5,16 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 // *********** added Sep 29, 2022 ************ //
-// let mongoose = require('mongoose');
-// let db = require('./db');
-// // points mongoose to the db URI
-// mongoose.connect(db.URI);
-// // to create an event to let mongo connect to the database
-// let mongoDB = mongoose.connection;
-// mongoDB.on('error', console.error.bind(console, 'connection Error: '));
-// mongoDB.once('open', () => {
-//   console.log('connected to MongoDB');
-// })
+let mongoose = require('mongoose');
+let db = require('./db');
+// points mongoose to the db URI
+mongoose.connect(db.URI);
+// to create an event to let mongo connect to the database
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'connection Error: '));
+mongoDB.once('open', () => {
+  console.log('connected to MongoDB');
+})
 // ******************************************* //
 
 let indexRouter = require('../routes/index');
@@ -31,12 +31,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
+app.use(express.static(path.join(__dirname, '../../public')));
+app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/bookList', booksRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -55,3 +56,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
