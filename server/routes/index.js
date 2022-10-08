@@ -1,5 +1,5 @@
 /*
-   File: index.ejs
+   File: index.js
    Name: Chihiro Hasegawa
    Student ID: 301229147
    Date: 2022/10/09 
@@ -9,27 +9,33 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. The router triggers the event whenever user goes to the main page */
+/* The router triggers the event whenever user goes to each page */
+// get home page
 router.get('/', function (req, res, next) {
   res.render('index', { title: "Chihiro's Website" },);
 });
 
+// get home page
 router.get('/home', function (req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
+// get About page
 router.get('/about', function (req, res, next) {
   res.render('about', { title: 'About Me' });
 });
 
+// get Projects page
 router.get('/Projects', function (req, res, next) {
   res.render('Projects', { title: 'Projects' });
 });
 
+// get Services page
 router.get('/Services', function (req, res, next) {
   res.render('Services', { title: 'Services' });
 });
 
+// get Contact page
 router.get('/Contact', function (req, res, next) {
   res.render('Contact', { title: 'Contact' });
 });

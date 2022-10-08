@@ -1,7 +1,18 @@
+<!-- 
+   File: error.ejs
+   Name: Chihiro Hasegawa
+   Student ID: 301229147
+   Date: 2022/10/09 
+-->
+
 <%-include partials/header.ejs%>
-<%-include partials/main_nav.ejs%>
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
-<%-include partials/bottom_nav.ejs%>
-<%-include partials/footer.ejs%>
+    <%-include partials/main_nav.ejs%>
+        <h1>
+            <%= message %>
+        </h1>
+        <h2>
+            <%= error.status %>
+        </h2>
+        <pre><%= error.stack %></pre>
+        <%-include partials/bottom_nav.ejs%>
+            <%-include partials/footer.ejs%>

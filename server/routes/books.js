@@ -1,3 +1,11 @@
+/*  
+  File: books.js
+  Name: Chihiro Hasegawa
+  Student ID: 301229147
+  Date: 2022 / 10 / 09
+*/
+
+// create a router object and a mongoose object
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -16,7 +24,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// 20221005
+/******************** added 20221005 ************************/
 // GET route for displaying the Add page - CREATE operation
 router.get('/add', (req, res, next) => {
     res.render('book/add', { title: 'Add a book' })
@@ -88,5 +96,6 @@ router.get('/delete/:id', (req, res, next) => {
         }
     })
 })
+/*********************************************************/
 
 module.exports = router;

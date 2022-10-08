@@ -1,5 +1,12 @@
 // package manifest, essencial file
 
+/*  
+  File: app.js
+  Name: Chihiro Hasegawa
+  Student ID: 301229147
+  Date: 2022 / 10 / 09
+*/
+
 // install other packages
 let createError = require('http-errors');
 let express = require('express');
