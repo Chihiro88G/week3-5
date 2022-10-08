@@ -8,12 +8,21 @@
 <%-include partials/header.ejs%>
    <%-include partials/main_nav.ejs%>
 
-      <h1>
-         <%= title %>
-      </h1>
-      <!-- <p>Welcome to <%= title %></p> -->
-      <p>Welcome to Chihiro's website!</p>
-      <p>Please feel free to explore to each link.</p>
+      <div class="container mx-auto white_bg" style="width: 500px;">
+         <h1>
+            <%= title %>
+         </h1>
+         <div class="text-center welcome">
+            <h4>Welcome to Chihiro's website!</h4>
+            <h4>Please feel free to explore to each link.</h4>
+            <div class="btn-group btns">
+               <a class="btn btn-outline-danger" href="./about">About Me</a>
+               <a class="btn  btn-outline-danger" href="./Services">Services</a>
+               <a class="btn btn-outline-danger" href="./Projects">Products</a>
+               <a class="btn  btn-outline-danger" href="./Contact">Contact</a>
+            </div>
+         </div>
+      </div>
 
       <%-include partials/bottom_nav.ejs%>
          <%-include partials/footer.ejs%>

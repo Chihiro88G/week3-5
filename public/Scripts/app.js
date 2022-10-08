@@ -1,3 +1,6 @@
+// IIFE Immediately Invoked Function Expression
+// Client side
+
 (function () {
     function start() {
         console.log("App started...");

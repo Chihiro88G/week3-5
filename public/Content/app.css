@@ -5,12 +5,23 @@
     Date: 2022/10/09
 */
 
+/* Custom CSS */
+
 body {
     margin: 0 auto;
+    background-image: url("../Assets/images/bgimg.jpg");
+    /* background-color: rgb(250, 245, 229); */
+    background-size: 100%;
+}
+
+.white_bg {
+    background-color: white;
+    padding-bottom: 10px;
 }
 
 .me_img {
     width: 200px;
+    margin-top: 10px;
 }
 
 .container-fluid>img {
@@ -18,17 +29,39 @@ body {
     height: 40px;
 }
 
-.elements {
-    margin-top: 5px;
-    margin-bottom: 5px;
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.elements>label {
-    display: inline-block;
-    text-align: right;
-    width: 100px;
+.btns {
+    margin-top: 30px;
 }
 
-.elements>input {
-    margin-left: 10px;
+.intro {
+    margin-top: 30px;
+}
+
+.project1>img {
+    width: 415px;
+}
+
+.project2>img {
+    width: 375px;
+}
+
+.project2>small {
+    display: block;
+}
+
+.project1,
+.project2 {
+    margin-bottom: 75px;
+}
+
+.project1:hover,
+.project2:hover {
+    top: -3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }

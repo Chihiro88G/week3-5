@@ -1,43 +1,38 @@
+// package manifest, essencial file
+
+// install other packages
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-// *********** added Sep 29, 2022 ************ //
-let mongoose = require('mongoose');
-let db = require('./db');
-// points mongoose to the db URI
-mongoose.connect(db.URI);
-// to create an event to let mongo connect to the database
-let mongoDB = mongoose.connection;
-mongoDB.on('error', console.error.bind(console, 'connection Error: '));
-mongoDB.once('open', () => {
-  console.log('connected to MongoDB');
-})
-// ******************************************* //
-
+// require paths' routes
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let booksRouter = require('../routes/books');
 
+// create a new Express application object
 let app = express();
 
-// view engine setup
+// view path and engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
+// mount middleware functions
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// activate static routes
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+// acrivate routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/bookList', booksRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -55,5 +50,20 @@ app.use(function (err, req, res, next) {
   res.render('error', { title: 'Error' });
 });
 
+// *********** added Sep 29, 2022 ************ //
+// connect to Mongo DB
+let mongoose = require('mongoose');
+let db = require('./db');
+// points mongoose to the db URI
+mongoose.connect(db.URI);
+// to create an event to let mongo connect to the database
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'connection Error: '));
+mongoDB.once('open', () => {
+  console.log('connected to MongoDB');
+})
+// ******************************************* //
+
+// return the application object
 module.exports = app;
 

@@ -1,0 +1,42 @@
+<%-include partials/header.ejs%>
+   <%-include partials/main_nav.ejs%>
+
+      <div class="container mx-auto white_bg" style="width: 900px;">
+         <h1>
+            <%= title %>
+         </h1>
+         <div class="text-center intro">
+            <p>My projects are as follows:</p>
+            <div class="row">
+               <div class="col project1">
+                  <h4>Search Makeup Products</h4>
+                  <p>Website to search certain makeup products such as vegan cosmetics from an API.</p>
+                  <img src="../Assets/images/Screenshot_SearchMakeupProducts.png" alt="">
+                  <small>(JavaScript, HTML, and CSS)</small>
+               </div>
+               <div class="col project2">
+                  <h4>Spring Task Manager</h4>
+                  <p> [Currently Working] Website to enter tasks and change the status when a task is done.</p>
+                  <img src="../Assets/images/Screenshot_SpringTaskManager.png" alt="">
+                  <small>(Java Spring MVC Framework)</small>
+               </div>
+               <div class="row">
+                  <div class="col project2">
+                     <h4>BMR Calculator</h4>
+                     <p>Website to calculate BMR with metric and imperial options.</p>
+                     <img src="../Assets/images/Screenshot_BMRcalculator.png" alt="">
+                     <small>(JavaScript, HTML, and CSS)</small>
+                  </div>
+                  <div class="col project1">
+                     <h4>Cat Gallery</h4>
+                     <p>Funny cat pictures moving by clicking arrow button or default set time.</p>
+                     <img src="../Assets/images/Screenshot_CatGallery.png" alt="">
+                     <small>(JavaScript, HTML, and CSS)</small>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <%-include partials/bottom_nav.ejs%>
+         <%-include partials/footer.ejs%>
