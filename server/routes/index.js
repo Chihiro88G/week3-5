@@ -40,7 +40,7 @@ router.get('/Contact', function (req, res, next) {
   res.render('Contact', { title: 'Contact' });
 });
 
-// get login page
+// get Login page
 router.get('/BusinessContactList', function (req, res, next) {
   res.render('BusinessContactList', { title: 'Business Contact List' });
 });
