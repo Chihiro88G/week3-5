@@ -5,12 +5,24 @@
   Date: 2022 / 10 / 09
 */
 
-var express = require('express');
-var router = express.Router();
+// create a router object and a mongoose object
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+// connect to usersModel
+let Book = require('../models/users');
+
+// get router for the users page - READ OPERATION
+router.get('/', (req, res, next) => {
+  Book.find((err, users) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      console.log(users);
+      // res.render('book/list', { title: 'users', users: users })
+    }
+  });
 });
 
 module.exports = router;

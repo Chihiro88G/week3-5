@@ -60,9 +60,11 @@ app.use(function (err, req, res, next) {
 // *********** added Sep 29, 2022 ************ //
 // connect to Mongo DB
 let mongoose = require('mongoose');
-let db = require('./db');
+let db = require('./db'); // showld be same place as db
+
 // points mongoose to the db URI
 mongoose.connect(db.URI);
+
 // to create an event to let mongo connect to the database
 let mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'connection Error: '));

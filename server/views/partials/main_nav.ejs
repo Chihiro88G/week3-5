@@ -17,9 +17,10 @@
         <% if (title=="Home" ){%>
           <li class="nav-item">
             <%} else {%>
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link active" aria-current="page" href="/index">Home</a>
               <%}%>
           </li>
+
           <% if (title=="about" ){%>
             <li class="nav-item">
               <%} else {%>
@@ -27,33 +28,40 @@
                 <%}%>
             </li>
 
-            <% if (title=="services" ){%>
+            <% if (title=="BusinessContactList" ){%>
               <li class="nav-item">
                 <%} else {%>
-                  <a class="nav-link active" aria-current="page" href="/services">Services</a>
+                  <a class="nav-link active" aria-current="page" href="/BusinessContactList">Business Contact List</a>
                   <%}%>
               </li>
 
-              <% if (title=="projects" ){%>
+              <% if (title=="services" ){%>
                 <li class="nav-item">
                   <%} else {%>
-                    <a class="nav-link active" aria-current="page" href="/projects">Projects</a>
+                    <a class="nav-link active" aria-current="page" href="/services">Services</a>
                     <%}%>
                 </li>
 
-                <% if (title=="contact" ){%>
+                <% if (title=="projects" ){%>
                   <li class="nav-item">
                     <%} else {%>
-                      <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+                      <a class="nav-link active" aria-current="page" href="/projects">Projects</a>
                       <%}%>
                   </li>
 
-                  <% if (title=="books" ){%>
+                  <% if (title=="contact" ){%>
                     <li class="nav-item">
                       <%} else {%>
-                        <a class="nav-link active" aria-current="page" href="/bookList">Books</a>
+                        <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
                         <%}%>
                     </li>
+
+                    <% if (title=="books" ){%>
+                      <li class="nav-item">
+                        <%} else {%>
+                          <a class="nav-link active" aria-current="page" href="/bookList">Books</a>
+                          <%}%>
+                      </li>
 
     </div>
   </div>
