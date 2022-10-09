@@ -21,6 +21,8 @@
                     <th class="text-content col-2">Usrname</th>
                     <th class="text-content col-2">Password</th>
                     <th class="text-content col-1">Email</th>
+                    <th class="text-content col-1"></th>
+                    <th class="text-content col-1"></th>
                 </tr>
                 <% for (let count=0; count < users.length; count++) { %>
                     <tr>
@@ -33,12 +35,12 @@
                         <td class="text-center col-1">
                             <%=users[count].email %>
                         </td>
-                        <!-- <td class="text-center col-1">
-                            <a href="/bookList/edit/<%=users[count].id %>" class="btn btn-primary">
+                        <td class="text-center col-1">
+                            <a href="/users/edit/<%=users[count].id %>" class="btn btn-primary">
                                 <i class="fas fa-pencil alt">Edit</i>
                             </a>
                         </td>
-                        <td class="text-center col-1">
+                        <!-- <td class="text-center col-1">
                             <a href="/bookList/delete/<%=users[count].id %>" class="btn btn-danger">
                                 <i class="fas fa-trash alt">Delete</i>
                             </a>
