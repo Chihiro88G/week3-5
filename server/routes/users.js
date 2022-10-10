@@ -57,4 +57,17 @@ router.post('/edit/:id', (req, res, next) => {
   })
 });
 
+// GET to perform Deletion - DELETE operation
+router.get('/delete/:id', (req, res, next) => {
+  let id = req.params.id;
+  Users.remove({ _id: id }, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    } else {
+      res.redirect('/users');
+    }
+  })
+})
+
 module.exports = router;
