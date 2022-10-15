@@ -24,7 +24,7 @@
     "popper.js": "^1.16.1"
   },
   "description": "\"# week3-5\"",
-  "main": "index.js",
+  "main": "server.js",
   "devDependencies": {},
   "repository": {
     "type": "git",

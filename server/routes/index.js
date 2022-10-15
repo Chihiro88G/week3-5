@@ -6,53 +6,37 @@
 */
 
 // install Express and create a new router
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let indexController = require('../../controllers/index')
 
 /* The router triggers the event whenever user goes to each page */
 // get login page
-router.get('/', function (req, res, next) {
-  res.render('login', { title: "Login" },);
-});
+router.get('/', indexController.displayLoginPage);
 
 // get home page
-router.get('/home', function (req, res, next) {
-  res.render('index', { title: 'Home' });
-});
+router.get('/home', indexController.displayHomePage);
 
 // get home page
-router.get('/index', function (req, res, next) {
-  res.render('index', { title: 'Home' });
-});
+router.get('/index', indexController.displayHomePage);
 
 // get BusinessContactList page
-router.get('/BusinessContactList', function (req, res, next) {
-  res.render('BusinessContactList', { title: 'Business Contact List' });
-});
+router.get('/BusinessContactList', indexController.displayBusinessContactListPage);
 
 // get Update page
-router.get('/Update', function (req, res, next) {
-  res.render('Update', { title: 'Update' });
-});
+router.get('/Update', indexController.displayUpdatePage);
 
 // get About page
-router.get('/about', function (req, res, next) {
-  res.render('about', { title: 'About Me' });
-});
+router.get('/about', indexController.displayAboutPage);
 
 // get Projects page
-router.get('/Projects', function (req, res, next) {
-  res.render('Projects', { title: 'Projects' });
-});
+router.get('/Projects', indexController.displayProjectsPage);
 
 // get Services page
-router.get('/Services', function (req, res, next) {
-  res.render('Services', { title: 'Services' });
-});
+router.get('/Services', indexController.displayServicesPage);
 
 // get Contact page
-router.get('/Contact', function (req, res, next) {
-  res.render('Contact', { title: 'Contact' });
-});
+router.get('/Contact', indexController.displayContactPage);
 
 module.exports = router;
