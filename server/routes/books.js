@@ -15,6 +15,14 @@ let Book = require('../models/books');
 
 let bookController = require('../../controllers/books')
 
+// helper function for guard purposes
+function requireAuth(req, res, next) {
+  if (!req.isAuthenticated) {
+    return res.redirect('/login');
+  }
+  next();
+}
+
 // get router for the book list page - READ OPERATION
 router.get('/', bookController.displayBookList);
 
@@ -22,19 +30,19 @@ router.get('/', bookController.displayBookList);
 /*********** modified controller parts 20221014 *************/
 
 // GET route for displaying the Add page - CREATE operation
-router.get('/add', bookController.displayAddPage);
+router.get('/add', requireAuth, bookController.displayAddPage);
 
 // POST route for processing the Add page - CREATE operation
-router.post('/add', bookController.processAddPage);
+router.post('/add', requireAuth, bookController.processAddPage);
 
 // GET route for displaying the Edit page - UPDATE operation
-router.get('/edit/:id', bookController.displayEditpage);
+router.get('/edit/:id', requireAuth, bookController.displayEditpage);
 
 // POST route for processing the Edit page - UPDATE operation
-router.post('/edit/:id', bookController.processEditPage);
+router.post('/edit/:id', requireAuth, bookController.processEditPage);
 
 // GET to perform Deletion - DELETE operation
-router.get('/delete/:id', bookController.displayDeletePage);
+router.get('/delete/:id', requireAuth, bookController.displayDeletePage);
 /*********************************************************/
 
 module.exports = router;

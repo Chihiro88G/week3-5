@@ -10,13 +10,20 @@ module.exports.displayBookList = (req, res, next) => {
             return console.error(err);
         } else {
             // console.log(bookList);
-            res.render('book/list', { title: 'bookList', bookList: bookList })
+            res.render('book/list', {
+                title: 'bookList',
+                bookList: bookList,
+                displayName: req.user ? req.user.displayName : ''
+            })
         }
     });
 }
 
 module.exports.displayAddPage = (req, res, next) => {
-    res.render('book/add', { title: 'Add a book' })
+    res.render('book/add', {
+        title: 'Add a book',
+        displayName: req.user ? req.user.displayName : ''
+    })
 }
 
 module.exports.processAddPage = (req, res, next) => {
@@ -45,7 +52,10 @@ module.exports.displayEditpage = (req, res, next) => {
             console.log(err);
             res.end(err);
         } else {
-            res.render('book/edit', { title: 'Edit Book', book: bookToEdit });
+            res.render('book/edit', {
+                title: 'Edit Book', book: bookToEdit,
+                displayName: req.user ? req.user.displayName : ''
+            });
         }
     })
 }

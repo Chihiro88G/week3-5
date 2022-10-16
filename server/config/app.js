@@ -14,6 +14,15 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+// *********** added Oct 15, 2022 ************ //
+// modules for authentication
+let session = require('express-session');
+let passport = require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
+// ******************************************* //
+
 // require paths' routes
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
@@ -31,6 +40,37 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// *********** added Oct 15, 2022 ************ //
+// set up express session
+app.use(session({
+  secret: "SomeSecret",
+  saveUninitialized: false,
+  resave: false
+}));
+
+// initialize flash
+app.use(flash());
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport user configuration
+
+
+// create a Users model instance
+let usersModel = require('../models/users');
+let User = usersModel.Users;
+
+// implement a User authentication strategy
+passport.use(User.createStrategy());
+
+// serialize and deserialize the Users info
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// ******************************************* //
 
 // activate static routes
 app.use(express.static(path.join(__dirname, '../../public')));

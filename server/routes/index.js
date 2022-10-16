@@ -9,7 +9,7 @@
 let express = require('express');
 let router = express.Router();
 
-let indexController = require('../../controllers/index')
+let indexController = require('../../controllers/index');
 
 /* The router triggers the event whenever user goes to each page */
 // get login page
@@ -34,9 +34,24 @@ router.get('/about', indexController.displayAboutPage);
 router.get('/Projects', indexController.displayProjectsPage);
 
 // get Services page
-router.get('/Services', indexController.displayServicesPage);
+router.get('/Services', indexController.displayRegisterPage);
 
 // get Contact page
 router.get('/Contact', indexController.displayContactPage);
+
+// GET route for displaying the Login page
+router.get('/login', indexController.displayLoginPage);
+
+// POST route for processing the Login page
+router.post('/login', indexController.processLoginPage);
+
+// GET route for displaying the Register page
+router.get('/register', indexController.displayRegisterPage);
+
+// POST route for processing the Register page
+router.post('/register', indexController.processRegisterPage);
+
+// GET route for performing user logout
+router.get('/logout', indexController.performLogout);
 
 module.exports = router;
