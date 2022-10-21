@@ -13,12 +13,12 @@
         console.log("App started...");
         let deleteButtons = document.querySelectorAll('.btn-danger');
 
-        // for detele buttoms on bookList
+        // for detele buttoms on contactList
         for (button of deleteButtons) {
             button.addEventListener('click', (event) => {
                 if (!confirm("Are you sure?")) {
                     event.preventDefault();
-                    window.location.assign('/bookList');
+                    window.location.assign('/contactList');
                 }
             })
         }

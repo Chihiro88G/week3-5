@@ -22,7 +22,7 @@ router.get('/home', indexController.displayHomePage);
 router.get('/index', indexController.displayHomePage);
 
 // get BusinessContactList page
-router.get('/BusinessContactList', indexController.displayBusinessContactListPage);
+router.get('/users', indexController.displayBusinessContactListPage);
 
 // get Update page
 router.get('/Update', indexController.displayUpdatePage);
@@ -34,7 +34,7 @@ router.get('/about', indexController.displayAboutPage);
 router.get('/Projects', indexController.displayProjectsPage);
 
 // get Services page
-router.get('/Services', indexController.displayRegisterPage);
+router.get('/Services', indexController.displayServicesPage);
 
 // get Contact page
 router.get('/Contact', indexController.displayContactPage);

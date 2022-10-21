@@ -5,7 +5,7 @@ let passport = require('passport');
 
 // create user model instance
 let userModel = require('../server/models/users');
-let User = userModel.Users;
+let User = userModel.users;
 
 
 module.exports.displayLoginPage = (req, res, next) => {
@@ -73,7 +73,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                return res.redirect('/bookList');
+                return res.redirect('/contactList');
             })
         }
     )(req, res, next);
@@ -128,7 +128,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             // redirect the user and authenticate them
 
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/bookList');
+                res.redirect('/contactList');
             })
         }
     })
