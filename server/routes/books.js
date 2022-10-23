@@ -10,9 +10,6 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
-// connect to bookModel
-let Book = require('../models/books');
-
 let bookController = require('../../controllers/books')
 
 // helper function for guard purposes

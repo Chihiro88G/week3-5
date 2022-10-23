@@ -2,6 +2,9 @@
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
+
+let jwt = require('jsonwebtoken');
+
 let Contact = require('../server/models/contact');
 
 module.exports.displayContactList = (req, res, next) => {
@@ -36,8 +39,6 @@ module.exports.displayEditPage = (req, res, next) => {
         }
     })
 };
-
-module.exports.test = (req, res, next) => { console.log('test successfull') };
 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id;

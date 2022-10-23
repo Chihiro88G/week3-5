@@ -10,11 +10,15 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 
+let jwt = require('jsonwebtoken');
+
+let passport = require('passport');
+
 let contactController = require('../../controllers/contact');
 
 // helper function for guard purposes
 function requireAuth(req, res, next) {
-  if (!req.isAuthenticated) {
+  if (!req.isAuthenticated()) {
     return res.redirect('/login');
   }
   next();
@@ -27,9 +31,9 @@ router.get('/', contactController.displayContactList);
 router.get('/edit/:id', requireAuth, contactController.displayEditPage);
 
 // POST route for processing the Edit page - UPDATE operation
-router.post('/edit/:id', contactController.processEditPage);
+router.post('/edit/:id', requireAuth, contactController.processEditPage);
 
 // GET to perform Deletion - DELETE operation
-router.get('/delete/:id', contactController.performDelete);
+router.get('/delete/:id', requireAuth, contactController.performDelete);
 
 module.exports = router;

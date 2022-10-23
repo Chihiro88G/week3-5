@@ -48,10 +48,9 @@ let usersModel = mongoose.Schema({
     }
 );
 
-// configure o[tions for user nodel
+// configure options for user nodel
 let options = ({ missingPassportError: 'Wrong/Missing password' });
 usersModel.plugin(passportLocalMongoose, options);
 
-module.exports.users = mongoose.model('users', usersModel);
+module.exports.User = mongoose.model('User', usersModel);
 
-// module.exports = mongoose.model('users', usersModel);

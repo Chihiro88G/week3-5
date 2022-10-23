@@ -13,11 +13,17 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let cors = require('cors');
 
 // *********** added Oct 15, 2022 ************ //
 // modules for authentication
 let session = require('express-session');
 let passport = require('passport');
+
+let passportJWT = require('passport-jwt');
+let JWTStrategy = passportJWT.Strategy;
+let extractJWT = passportJWT.ExtractJwt;
+
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
@@ -42,6 +48,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// *********** added Sep 29, 2022 ************ //
+// connect to Mongo DB
+let mongoose = require('mongoose');
+let db = require('./db'); // showld be same place as db
+
+// points mongoose to the db URI
+mongoose.connect(db.URI);
+
+// to create an event to let mongo connect to the database
+let mongoDB = mongoose.connection;
+mongoDB.on('error', console.error.bind(console, 'connection Error: '));
+mongoDB.once('open', () => {
+  console.log('connected to MongoDB');
+})
+// ******************************************* //
+
 // *********** added Oct 15, 2022 ************ //
 // set up express session
 app.use(session({
@@ -58,19 +80,34 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // passport user configuration
-
-
 // create a Users model instance
 let usersModel = require('../models/users');
-let User = usersModel.users;
+let User = usersModel.User;
 
 // implement a User authentication strategy
 passport.use(User.createStrategy());
 
-// serialize and deserialize the Users info
+// serialize and deserialize the User info (encrypt and decrypt)
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+// ******************************************* //
 
+// *********** added Oct 21, 2022 ************ //
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = extractJWT.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = db.Secret;
+
+let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
+  User.findById(jwt_payload.id)
+    .then(user => {
+      return done(null, user);
+    })
+    .catch(err => {
+      return done(err, false);
+    })
+});
+
+passport.use(strategy);
 // ******************************************* //
 
 // activate static routes
@@ -98,22 +135,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', { title: 'Error' });
 });
-
-// *********** added Sep 29, 2022 ************ //
-// connect to Mongo DB
-let mongoose = require('mongoose');
-let db = require('./db'); // showld be same place as db
-
-// points mongoose to the db URI
-mongoose.connect(db.URI);
-
-// to create an event to let mongo connect to the database
-let mongoDB = mongoose.connection;
-mongoDB.on('error', console.error.bind(console, 'connection Error: '));
-mongoDB.once('open', () => {
-  console.log('connected to MongoDB');
-})
-// ******************************************* //
 
 // return the application object
 module.exports = app;

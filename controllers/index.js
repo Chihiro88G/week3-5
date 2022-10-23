@@ -3,9 +3,13 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 
+// enable jwt
+let jwt = require('jsonwebtoken');
+let DB = require('../server/config/db');
+
 // create user model instance
 let userModel = require('../server/models/users');
-let User = userModel.users;
+let User = userModel.User;
 
 
 module.exports.displayLoginPage = (req, res, next) => {
@@ -73,10 +77,31 @@ module.exports.processLoginPage = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
+
+                const payload = {
+                    id: user._id,
+                    displayName: user.displayName,
+                    username: user.username,
+                    email: user.email
+                }
+
+                const authToken = jwt.sign(payload, DB.Secret, {
+                    expiresIn: 604800 // 1 week
+                });
+
+                // TODO getting ready to convert to API
+                // res.json({
+                //     success: true, msg: 'User logged in successfully', user: {
+                //         id: user._id,
+                //         displayName: user.displayName,
+                //         username: user.username,
+                //         email: user.email
+                //     }, token: authToken
+                // });
+
                 return res.redirect('/contactList');
-            })
-        }
-    )(req, res, next);
+            });
+        })(req, res, next);
 }
 
 module.exports.displayRegisterPage = (req, res, next) => {
@@ -127,6 +152,9 @@ module.exports.processRegisterPage = (req, res, next) => {
 
             // redirect the user and authenticate them
 
+            // TODO getting ready to convert to API
+            // res.json({ success: true, msg: 'User registered successfully' });
+
             return passport.authenticate('local')(req, res, () => {
                 res.redirect('/contactList');
             })
@@ -135,6 +163,8 @@ module.exports.processRegisterPage = (req, res, next) => {
 }
 
 module.exports.performLogout = (req, res, next) => {
-    req.logout();
-    res.redirect('/');
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
 }

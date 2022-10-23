@@ -13,16 +13,13 @@ let indexController = require('../../controllers/index');
 
 /* The router triggers the event whenever user goes to each page */
 // get login page
-router.get('/', indexController.displayLoginPage);
+router.get('/', indexController.displayHomePage);
 
 // get home page
 router.get('/home', indexController.displayHomePage);
 
 // get home page
 router.get('/index', indexController.displayHomePage);
-
-// get BusinessContactList page
-router.get('/users', indexController.displayBusinessContactListPage);
 
 // get Update page
 router.get('/Update', indexController.displayUpdatePage);
